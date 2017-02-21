@@ -1,10 +1,13 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using Fiddler;
 
 namespace Spindelvev
 {
     public class FiddlerConnection : IListenerConnection
     {
+        public event BeforeResponse OnBeforeResponse;
+
         public int Port { get; set; }
         
         public void Connect()
@@ -23,19 +26,18 @@ namespace Spindelvev
                 ;
 
             FiddlerApplication.Startup(Port, flags);
-            FiddlerApplication.BeforeResponse += session =>
-            {
-                if (OnBeforeResponse == null) return;
-                OnBeforeResponse(session);
-            };
+            FiddlerApplication.BeforeResponse += FiddlerApplicationOnBeforeResponse;
+        }
 
+        private void FiddlerApplicationOnBeforeResponse(Session session)
+        {
+            OnBeforeResponse?.Invoke(session);
         }
 
         public void Disconnect()
         {
+            FiddlerApplication.BeforeResponse -= FiddlerApplicationOnBeforeResponse;
             FiddlerApplication.Shutdown();
         }
-
-        public event BeforeResponse OnBeforeResponse;
     }
 }

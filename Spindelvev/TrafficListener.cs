@@ -2,6 +2,7 @@
 using System.Linq;
 using Fiddler;
 using Spindelvev.Infrastructure;
+using Spindelvev.Infrastructure.Logger;
 
 namespace Spindelvev
 {
@@ -19,7 +20,8 @@ namespace Spindelvev
 
         public void StartListening(IListenerConnection listenerConnection, IListenerFilter listenerFilter, ITrafficHandler trafficHandler)
         {
-            _logger.Debug($"Starting to listen using {listenerConnection.GetType().Name}");
+            _logger.Debug("Starting to listen using {Listener} and filters {@Verbs} {@Hostnames} {@Routes}",
+                listenerConnection.GetType().Name, listenerFilter.Verbs, listenerFilter.Hostnames, listenerFilter.Routes);
 
             listenerConnection.Connect();
             listenerConnection.OnBeforeResponse += session => OnBeforeResponse(session, listenerFilter, trafficHandler);
@@ -27,19 +29,22 @@ namespace Spindelvev
 
         public void StopListening(IListenerConnection listenerConnection)
         {
-            _logger.Debug($"Stopping listening on {listenerConnection.GetType().Name}");
+            _logger.Debug("Stopping listening on {Listener}", listenerConnection.GetType().Name);
 
             listenerConnection.Disconnect();
         }
 
         private void OnBeforeResponse(Session session, IListenerFilter filter, ITrafficHandler handler)
         {
-            _logger.Verbose("BeforeResponse for {0} {1}", session.RequestMethod, session.url);
+            _logger.Verbose("{ThisMethod} for {Method} {Url}", nameof(OnBeforeResponse), session.RequestMethod, session.url);
+
+            if (filter.Verbs.Any() && !filter.Verbs.Any(verbFilter => session.RequestMethod.Equals(verbFilter)))
+            {
+                return;
+            }
 
             if (filter.ApplyFilters)
             {
-                _logger.Verbose("Applying filters. Hostnames: {@Hostnames}, Routes: {@Routes}", filter.Hostnames, filter.Routes);
-
                 if (ShouldFilterHostnameAndRoute(filter))
                 {
                     if (MatchesHostnameAndRouteFilter(session, filter))

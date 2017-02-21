@@ -83,15 +83,14 @@
     <Compile Include="IListenerConnection.cs" />
     <Compile Include="IListenerFilter.cs" />
     <Compile Include="Cache\IResponseCache.cs" />
-    <Compile Include="Infrastructure\ISpindelvevLogger.cs" />
+    <Compile Include="Infrastructure\Logger\ISpindelvevLogger.cs" />
     <Compile Include="ITrafficHandler.cs" />
     <Compile Include="ListenerFilter.cs" />
-    <Compile Include="ListenerFilterBuilder.cs" />
-    <Compile Include="Infrastructure\LogEntry.cs" />
-    <Compile Include="Infrastructure\LogSeverity.cs" />
+    <Compile Include="Infrastructure\Logger\LogEntry.cs" />
+    <Compile Include="Infrastructure\Logger\LogSeverity.cs" />
     <Compile Include="Cache\ResponseCache.cs" />
-    <Compile Include="Infrastructure\SpindelvevLogger.cs" />
-    <Compile Include="Infrastructure\TinyIoC.cs" />
+    <Compile Include="Infrastructure\Logger\SpindelvevLogger.cs" />
+    <Compile Include="Infrastructure\IoC\TinyIoC.cs" />
     <Compile Include="TrafficListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

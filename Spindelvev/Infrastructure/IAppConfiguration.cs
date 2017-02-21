@@ -6,5 +6,6 @@ namespace Spindelvev.Infrastructure
     {
         IEnumerable<string> HostnameFilters { get; }
         IEnumerable<string> RouteFilters { get; }
+        IEnumerable<string> VerbFilters { get; }
     }
 }

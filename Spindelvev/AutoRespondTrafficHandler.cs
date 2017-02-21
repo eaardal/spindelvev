@@ -2,6 +2,7 @@
 using Fiddler;
 using Spindelvev.Cache;
 using Spindelvev.Infrastructure;
+using Spindelvev.Infrastructure.Logger;
 
 namespace Spindelvev
 {
@@ -22,15 +23,15 @@ namespace Spindelvev
         {
             var key = $"{session.RequestMethod}_{session.hostname}_{session.url}";
 
-            _logger.Verbose("{0} {1}", session.RequestMethod, session.url);
+            _logger.Verbose("{ThisMethod} for {Method} {Url} {StatusCode}", nameof(HandleResponse), session.RequestMethod, session.url, session.responseCode);
 
             if (IsResponseSuccessful(session))
             {
-                _logger.Verbose(">> Response was successful");
+                _logger.Verbose("Response was successful");
 
                 if (!_responseCache.IsCached(key))
                 {
-                    _logger.Info(">> Response was not previously cached, adding");
+                    _logger.Info("Response was not previously cached, adding");
 
                     var responseBodyBytes = new byte[session.responseBodyBytes.Length];
                     session.responseBodyBytes.CopyTo(responseBodyBytes, 0);
@@ -43,16 +44,16 @@ namespace Spindelvev
                 }
                 else
                 {
-                    _logger.Verbose(">> Response was previously cached");
+                    _logger.Verbose("Response was previously cached");
                 }
             }
             else
             {
-                _logger.Verbose(">> Response was not successful");
+                _logger.Info("Response was not successful");
 
                 if (_responseCache.IsCached(key))
                 {
-                    _logger.Info(">> Response was previously cached");
+                    _logger.Info("Response was previously cached");
 
                     var cachedSession = _responseCache.Get(key);
                     session.responseCode = cachedSession.ResponseCode;
@@ -61,11 +62,11 @@ namespace Spindelvev
                     cachedSession.ResponseBodyBytes.CopyTo(newResponseBodyBytes, 0);
                     session.responseBodyBytes = newResponseBodyBytes;
 
-                    _logger.Info(">> Replaced failed response with cached response");
+                    _logger.Info("Replaced failed response with cached response");
                 }
                 else
                 {
-                    _logger.Verbose(">> Response was not previously cached");
+                    _logger.Info("Response was not previously cached");
                 }
             }
         }

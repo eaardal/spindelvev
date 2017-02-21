@@ -1,5 +1,7 @@
 ﻿using Spindelvev.Cache;
 using Spindelvev.Infrastructure;
+using Spindelvev.Infrastructure.IoC;
+using Spindelvev.Infrastructure.Logger;
 
 namespace Spindelvev.Startup
 {

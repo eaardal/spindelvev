@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Spindelvev.Infrastructure
+namespace Spindelvev.Infrastructure.Logger
 {
     public class LogEntry
     {

@@ -7,5 +7,6 @@ namespace Spindelvev
         bool ApplyFilters { get; }
         IEnumerable<string> Hostnames { get; set; }
         IEnumerable<string> Routes { get; set; }
+        IEnumerable<string> Verbs { get; set; }
     }
 }

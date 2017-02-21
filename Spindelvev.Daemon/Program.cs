@@ -1,4 +1,5 @@
 ﻿using Spindelvev.Infrastructure;
+using Spindelvev.Infrastructure.Logger;
 using Spindelvev.Startup;
 using Topshelf;
 
@@ -29,7 +30,8 @@ namespace Spindelvev.Daemon
                         var filter = new ListenerFilter
                         {
                             Hostnames = appConfig.HostnameFilters,
-                            Routes = appConfig.RouteFilters
+                            Routes = appConfig.RouteFilters,
+                            Verbs = appConfig.VerbFilters
                         };
 
                         var trafficHandler = ioc.Resolve<ITrafficHandler>();

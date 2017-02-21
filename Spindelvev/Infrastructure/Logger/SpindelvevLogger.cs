@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using Serilog;
 
-namespace Spindelvev.Infrastructure
+namespace Spindelvev.Infrastructure.Logger
 {
     class SpindelvevLogger : ISpindelvevLogger
     {

@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 using Spindelvev.Infrastructure;
+using Spindelvev.Infrastructure.Logger;
 
 namespace Spindelvev.Application.Converters
 {

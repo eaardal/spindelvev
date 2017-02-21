@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Spindelvev.Infrastructure;
+using Spindelvev.Infrastructure.Logger;
 using Spindelvev.Startup;
 
 namespace Spindelvev.Application

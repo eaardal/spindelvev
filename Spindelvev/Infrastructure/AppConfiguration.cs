@@ -8,7 +8,10 @@ namespace Spindelvev.Infrastructure
     public class AppConfiguration : IAppConfiguration
     {
         public IEnumerable<string> HostnameFilters => ReadConfigurationAsEnumerable<string>("Filter.Hostnames");
+
         public IEnumerable<string> RouteFilters => ReadConfigurationAsEnumerable<string>("Filter.Routes");
+
+        public IEnumerable<string> VerbFilters => ReadConfigurationAsEnumerable<string>("Filter.Verbs");
 
         private static IEnumerable<T> ReadConfigurationAsEnumerable<T>(string key, bool throwIfNoValue = false, T defaultValue = default(T))
         {

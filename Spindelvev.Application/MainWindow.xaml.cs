@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Spindelvev.Infrastructure;
+using Spindelvev.Infrastructure.IoC;
 
 namespace Spindelvev.Application
 {

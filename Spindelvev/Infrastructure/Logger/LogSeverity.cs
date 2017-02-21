@@ -1,4 +1,4 @@
-﻿namespace Spindelvev.Infrastructure
+﻿namespace Spindelvev.Infrastructure.Logger
 {
     public enum LogSeverity
     {
