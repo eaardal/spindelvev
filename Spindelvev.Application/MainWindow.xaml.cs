@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.ComponentModel;
+using Spindelvev.Infrastructure;
 
 namespace Spindelvev.Application
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
+
+            this.Closing += OnClosing;
+        }
+
+        private void OnClosing(object sender, CancelEventArgs cancelEventArgs)
+        {
+            var ioc = TinyIoCContainer.Current;
+
+            var connection = ioc.Resolve<IListenerConnection>();
+            var listener = ioc.Resolve<ITrafficListener>();
+
+            listener.StopListening(connection);
         }
     }
 }

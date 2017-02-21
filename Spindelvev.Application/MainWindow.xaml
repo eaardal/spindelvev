@@ -4,9 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Spindelvev.Application"
+        xmlns:converters="clr-namespace:Spindelvev.Application.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="720" Width="1270">
+    <Window.Resources>
+        <converters:LogSeverityToBackgroundBrushConverter x:Key="LogSeverityToBackgroundBrushConverter" />
+        <converters:LogSeverityToBorderBrushConverter x:Key="LogSeverityToBorderBrushConverter" />
+    </Window.Resources>
     <Grid>
-        
+        <ListView ItemsSource="{Binding Path=LogEntries}" HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border 
+                        Background="{Binding Path=Severity, Converter={StaticResource LogSeverityToBackgroundBrushConverter}}" 
+                        Padding="3"
+                        HorizontalAlignment="Stretch"
+                        BorderBrush="{Binding Path=Severity, Converter={StaticResource LogSeverityToBorderBrushConverter}}"
+                        BorderThickness="2"
+                    >
+                        <TextBlock Text="{Binding}"></TextBlock>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
