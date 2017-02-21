@@ -2,6 +2,7 @@
 {
     public enum LogSeverity
     {
-        Verbose, Info, Warning, Error
+        Verbose, Info, Warning, Error,
+        Debug
     }
 }

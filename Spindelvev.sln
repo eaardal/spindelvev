@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spindelvev.Application", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spindelvev", "Spindelvev\Spindelvev.csproj", "{216630D8-FAA2-4420-9A25-ACA091253116}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spindelvev.Daemon", "Spindelvev.Daemon\Spindelvev.Daemon.csproj", "{093D98CB-2AE4-4237-8B53-5AE44B61946F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{216630D8-FAA2-4420-9A25-ACA091253116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{216630D8-FAA2-4420-9A25-ACA091253116}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{216630D8-FAA2-4420-9A25-ACA091253116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093D98CB-2AE4-4237-8B53-5AE44B61946F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093D98CB-2AE4-4237-8B53-5AE44B61946F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093D98CB-2AE4-4237-8B53-5AE44B61946F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093D98CB-2AE4-4237-8B53-5AE44B61946F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

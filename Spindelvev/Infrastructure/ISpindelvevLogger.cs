@@ -8,5 +8,6 @@
 
         void Verbose(string message, params object[] propertyValues);
         void Info(string message, params object[] propertyValues);
+        void Debug(string message, params object[] propertyValues);
     }
 }

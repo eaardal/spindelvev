@@ -16,11 +16,10 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border 
-                        Background="{Binding Path=Severity, Converter={StaticResource LogSeverityToBackgroundBrushConverter}}" 
-                        Padding="3"
+                        Background="{Binding Path=Severity, Converter={StaticResource LogSeverityToBackgroundBrushConverter}}"
                         HorizontalAlignment="Stretch"
                         BorderBrush="{Binding Path=Severity, Converter={StaticResource LogSeverityToBorderBrushConverter}}"
-                        BorderThickness="2"
+                        BorderThickness="1"
                     >
                         <TextBlock Text="{Binding}"></TextBlock>
                     </Border>
